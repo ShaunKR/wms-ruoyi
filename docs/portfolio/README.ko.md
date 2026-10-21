@@ -53,6 +53,7 @@
 - [업무 흐름과 데이터 모델](model.ko.md)
 - [로컬 실행](run.ko.md)
 - [수량 검증 개선과 테스트](quantity-validation.ko.md)
+- [한국어 화면과 서버 메시지](localization.ko.md)
 
 ## 검증된 범위로 작성한 소개
 

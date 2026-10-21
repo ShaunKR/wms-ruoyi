@@ -34,38 +34,38 @@ public class MerchantVo implements Serializable {
     /**
      * 编号
      */
-    @ExcelProperty(value = "编号")
+    @ExcelProperty(value = "코드")
     private String merchantCode;
 
     /**
      * 名称
      */
-    @ExcelProperty(value = "名称")
+    @ExcelProperty(value = "이름")
     private String merchantName;
 
     /**
      * 企业类型
      */
-    @ExcelProperty(value = "企业类型", converter = ExcelDictConvert.class)
+    @ExcelProperty(value = "거래처 유형", converter = ExcelDictConvert.class)
     @ExcelDictFormat(dictType = "merchant_type")
     private Integer merchantType;
 
     /**
      * 级别
      */
-    @ExcelProperty(value = "级别")
+    @ExcelProperty(value = "등급")
     private String merchantLevel;
 
     /**
      * 联系人
      */
-    @ExcelProperty(value = "联系人")
+    @ExcelProperty(value = "담당자")
     private String contactPerson;
 
     /**
      * 备注
      */
-    @ExcelProperty(value = "备注")
+    @ExcelProperty(value = "비고")
     private String remark;
 
 

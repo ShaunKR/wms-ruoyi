@@ -26,25 +26,25 @@ public class InventoryBo extends BaseEntity {
     /**
      *
      */
-    @NotNull(message = "不能为空", groups = { EditGroup.class })
+    @NotNull(message = "항목은 필수입니다.", groups = { EditGroup.class })
     private Long id;
 
     /**
      * 规格ID
      */
-    @NotNull(message = "规格ID不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "규격 ID가 필요합니다.", groups = { AddGroup.class, EditGroup.class })
     private Long skuId;
 
     /**
      * 所属仓库
      */
-    @NotNull(message = "所属仓库不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "창고를 선택해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private Long warehouseId;
 
     /**
      * 库存
      */
-    @NotNull(message = "库存不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "재고 수량을 입력해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private BigDecimal quantity;
 
     /**

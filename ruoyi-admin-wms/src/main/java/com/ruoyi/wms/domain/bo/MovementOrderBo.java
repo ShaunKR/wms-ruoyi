@@ -23,13 +23,13 @@ public class MovementOrderBo extends BaseOrderBo<MovementOrderDetailBo> {
     /**
      * 源仓库
      */
-    @NotNull(message = "源仓库不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "출발 창고를 선택해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private Long sourceWarehouseId;
 
     /**
      * 目标仓库
      */
-    @NotNull(message = "目标仓库不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "도착 창고를 선택해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private Long targetWarehouseId;
 
 

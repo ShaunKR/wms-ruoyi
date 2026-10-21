@@ -18,7 +18,7 @@ public class ItemCategoryBo extends BaseEntity {
     /**
      * 物料类型id
      */
-    @NotNull(message = "物料类型id不能为空", groups = { EditGroup.class })
+    @NotNull(message = "품목 분류 ID가 필요합니다.", groups = { EditGroup.class })
     private Long id;
 
     /**
@@ -29,7 +29,7 @@ public class ItemCategoryBo extends BaseEntity {
     /**
      * 物料类型名称
      */
-    @NotBlank(message = "物料类型名称不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotBlank(message = "품목 분류명을 입력해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private String categoryName;
 
     /**

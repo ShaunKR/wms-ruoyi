@@ -33,25 +33,25 @@ public class InventoryVo implements Serializable {
     /**
      * 规格ID
      */
-    @ExcelProperty(value = "规格ID")
+    @ExcelProperty(value = "규격 ID")
     private Long skuId;
 
     /**
      * 所属仓库
      */
-    @ExcelProperty(value = "所属仓库")
+    @ExcelProperty(value = "소속 창고")
     private Long warehouseId;
 
     /**
      * 库存
      */
-    @ExcelProperty(value = "库存")
+    @ExcelProperty(value = "재고")
     private BigDecimal quantity;
 
     /**
      * 备注
      */
-    @ExcelProperty(value = "备注")
+    @ExcelProperty(value = "비고")
     private String remark;
 
     private ItemSkuVo itemSku;

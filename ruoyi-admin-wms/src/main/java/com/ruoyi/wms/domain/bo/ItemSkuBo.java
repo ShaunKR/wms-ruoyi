@@ -20,19 +20,19 @@ public class ItemSkuBo extends BaseEntity {
     /**
      *
      */
-    @NotNull(message = "不能为空", groups = { EditGroup.class })
+    @NotNull(message = "항목은 필수입니다.", groups = { EditGroup.class })
     private Long id;
 
     /**
      * 规格名称
      */
-    @NotBlank(message = "规格名称不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotBlank(message = "규격명을 입력해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private String skuName;
 
     /**
      *
      */
-    @NotNull(message = "不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "항목은 필수입니다.", groups = { AddGroup.class, EditGroup.class })
     private Long itemId;
 
     /**

@@ -37,50 +37,50 @@ public class InventoryHistoryVo implements Serializable {
     /**
      * 操作id（出库、入库、库存移动表单id）
      */
-    @ExcelProperty(value = "操作id", converter = ExcelDictConvert.class)
-    @ExcelDictFormat(readConverterExp = "出=库、入库、库存移动表单id")
+    @ExcelProperty(value = "작업id", converter = ExcelDictConvert.class)
+    @ExcelDictFormat(readConverterExp = "입출고·이동 전표 ID")
     private Long orderId;
 
     /**
      * 操作单号（入库、出库、移库、盘库单号）
      */
-    @ExcelProperty(value = "操作单号")
+    @ExcelProperty(value = "처리 전표 번호")
     private String orderNo;
 
     /**
      * 订单类型
      */
-    @ExcelProperty(value = "订单类型")
+    @ExcelProperty(value = "전표 유형")
     private Integer orderType;
 
     /**
      * 物料ID
      */
-    @ExcelProperty(value = "物料ID")
+    @ExcelProperty(value = "품목 ID")
     private Long skuId;
 
     /**
      * 金额
      */
-    @ExcelProperty(value = "金额")
+    @ExcelProperty(value = "금액")
     private BigDecimal amount;
 
     /**
      * 库存变化
      */
-    @ExcelProperty(value = "库存变化")
+    @ExcelProperty(value = "재고 변경")
     private BigDecimal quantity;
 
     /**
      * 备注
      */
-    @ExcelProperty(value = "备注")
+    @ExcelProperty(value = "비고")
     private String remark;
 
     /**
      * 所属仓库
      */
-    @ExcelProperty(value = "所属仓库")
+    @ExcelProperty(value = "소속 창고")
     private Long warehouseId;
 
     /**

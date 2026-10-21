@@ -51,7 +51,7 @@ public class ReceiptOrderService {
      */
     public ReceiptOrderVo queryById(Long id){
         ReceiptOrderVo receiptOrderVo = receiptOrderMapper.selectVoById(id);
-        Assert.notNull(receiptOrderVo, "入库单不存在");
+        Assert.notNull(receiptOrderVo, "입고 전표를 찾을 수 없습니다.");
         receiptOrderVo.setDetails(receiptOrderDetailService.queryByReceiptOrderId(id));
         return receiptOrderVo;
     }
@@ -141,7 +141,7 @@ public class ReceiptOrderService {
 
     private void validateBeforeReceive(ReceiptOrderBo bo) {
         if (CollUtil.isEmpty(bo.getDetails())) {
-            throw new BaseException("商品明细不能为空");
+            throw new BaseException("상품 상세를 하나 이상 추가해 주세요.");
         }
     }
 
@@ -187,9 +187,9 @@ public class ReceiptOrderService {
 
     private void validateIdBeforeDelete(Long id) {
         ReceiptOrderVo receiptOrderVo = queryById(id);
-        Assert.notNull(receiptOrderVo, "入库单不存在");
+        Assert.notNull(receiptOrderVo, "입고 전표를 찾을 수 없습니다.");
         if (ServiceConstants.ReceiptOrderStatus.FINISH.equals(receiptOrderVo.getOrderStatus())) {
-            throw new ServiceException("删除失败", HttpStatus.CONFLICT,"入库单【" + receiptOrderVo.getOrderNo() + "】已入库，无法删除！");
+            throw new ServiceException("삭제할 수 없습니다.", HttpStatus.CONFLICT,"입고 전표 [" + receiptOrderVo.getOrderNo() + "]는 입고가 완료되어 삭제할 수 없습니다.");
         }
     }
 
@@ -204,6 +204,6 @@ public class ReceiptOrderService {
         LambdaQueryWrapper<ReceiptOrder> receiptOrderLqw = Wrappers.lambdaQuery();
         receiptOrderLqw.eq(ReceiptOrder::getOrderNo, receiptOrderNo);
         ReceiptOrder receiptOrder = receiptOrderMapper.selectOne(receiptOrderLqw);
-        Assert.isNull(receiptOrder, "入库单号重复，请手动修改");
+        Assert.isNull(receiptOrder, "입고 전표 번호가 중복됩니다. 다른 번호를 입력해 주세요.");
     }
 }

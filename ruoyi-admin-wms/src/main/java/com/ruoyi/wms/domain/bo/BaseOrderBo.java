@@ -17,13 +17,13 @@ public class BaseOrderBo<T extends BaseOrderDetailBo> extends BaseEntity {
     /**
      *
      */
-    @NotNull(message = "不能为空", groups = { EditGroup.class })
+    @NotNull(message = "항목은 필수입니다.", groups = { EditGroup.class })
     private Long id;
 
     /**
      * 业务单号
      */
-    @NotBlank(message = "入库单号单号不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotBlank(message = "입고 전표 번호를 입력해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private String orderNo;
 
     /**

@@ -97,7 +97,7 @@ public class MerchantService {
         receiptOrderLqw.eq(ReceiptOrder::getMerchantId, id);
         Long receiptOrderCount = receiptOrderMapper.selectCount(receiptOrderLqw);
         if (receiptOrderCount != null && receiptOrderCount > 0) {
-            throw new ServiceException("删除失败", HttpStatus.CONFLICT,"该企业已有业务关联，无法删除！");
+            throw new ServiceException("삭제할 수 없습니다.", HttpStatus.CONFLICT,"업무 내역이 있는 거래처는 삭제할 수 없습니다.");
         }
     }
 

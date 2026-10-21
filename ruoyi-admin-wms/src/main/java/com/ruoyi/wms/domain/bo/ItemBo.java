@@ -20,7 +20,7 @@ public class ItemBo extends BaseEntity {
     /**
      *
      */
-    @NotNull(message = "不能为空", groups = { EditGroup.class })
+    @NotNull(message = "항목은 필수입니다.", groups = { EditGroup.class })
     private Long id;
 
     /**
@@ -36,13 +36,13 @@ public class ItemBo extends BaseEntity {
     /**
      * 名称
      */
-    @NotBlank(message = "名称不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotBlank(message = "이름을 입력해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private String itemName;
 
     /**
      * 分类
      */
-    @NotBlank(message = "分类不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotBlank(message = "분류를 선택해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private String itemCategory;
 
     /**

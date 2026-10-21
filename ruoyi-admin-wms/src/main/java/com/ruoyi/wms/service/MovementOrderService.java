@@ -49,7 +49,7 @@ public class MovementOrderService {
     public MovementOrderVo queryById(Long id) {
         MovementOrderVo movementOrderVo = movementOrderMapper.selectVoById(id);
         if (movementOrderVo == null) {
-            throw new BaseException("移库单不存在");
+            throw new BaseException("이동 전표를 찾을 수 없습니다.");
         }
         movementOrderVo.setDetails(movementOrderDetailService.queryByMovementOrderId(id));
         return movementOrderVo;
@@ -107,7 +107,7 @@ public class MovementOrderService {
         LambdaQueryWrapper<MovementOrder> lambdaQueryWrapper = Wrappers.lambdaQuery();
         lambdaQueryWrapper.eq(MovementOrder::getOrderNo, movementOrderNo);
         if (movementOrderMapper.exists(lambdaQueryWrapper)) {
-            throw new BaseException("移库单号重复，请手动修改");
+            throw new BaseException("이동 전표 번호가 중복됩니다. 다른 번호를 입력해 주세요.");
         }
     }
 
@@ -137,10 +137,10 @@ public class MovementOrderService {
     private void validateIdBeforeDelete(Long id) {
         MovementOrderVo movementOrderVo = queryById(id);
         if (movementOrderVo == null) {
-            throw new BaseException("移库单不存在");
+            throw new BaseException("이동 전표를 찾을 수 없습니다.");
         }
         if (ServiceConstants.MovementOrderStatus.FINISH.equals(movementOrderVo.getOrderStatus())) {
-            throw new ServiceException("移库单【" + movementOrderVo.getOrderNo() + "】已移库，无法删除！");
+            throw new ServiceException("이동 전표 [" + movementOrderVo.getOrderNo() + "]는 이동이 완료되어 삭제할 수 없습니다.");
         }
     }
 
@@ -196,7 +196,7 @@ public class MovementOrderService {
 
     private void validateBeforeMove(MovementOrderBo bo) {
         if (CollUtil.isEmpty(bo.getDetails())) {
-            throw new BaseException("商品明细不能为空！");
+            throw new BaseException("상품 상세를 하나 이상 추가해 주세요.");
         }
     }
 }

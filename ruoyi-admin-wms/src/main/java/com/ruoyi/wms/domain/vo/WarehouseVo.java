@@ -27,23 +27,23 @@ public class WarehouseVo extends BaseVo {
     /**
      * 编号
      */
-    @ExcelProperty(value = "编号")
+    @ExcelProperty(value = "코드")
     private String warehouseCode;
 
     /**
      * 名称
      */
-    @ExcelProperty(value = "名称")
+    @ExcelProperty(value = "이름")
     private String warehouseName;
     /**
      * 排序
      */
-    @ExcelProperty(value = "排序")
+    @ExcelProperty(value = "정렬")
     private Long orderNum;
     /**
      * 备注
      */
-    @ExcelProperty(value = "备注")
+    @ExcelProperty(value = "비고")
     private String remark;
 
 }

@@ -65,12 +65,12 @@ public class ItemCategoryController extends BaseController {
     /**
      * 导出物料类型列表
      */
-    @Log(title = "物料类型", businessType = BusinessType.EXPORT)
+    @Log(title = "품목 분류", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @SaCheckPermission("wms:item:list")
     public void export(ItemCategoryBo bo, HttpServletResponse response) {
         List<ItemCategoryVo> list = itemCategoryService.queryList(bo);
-        ExcelUtil.exportExcel(list, "物料类型", ItemCategoryVo.class, response);
+        ExcelUtil.exportExcel(list, "품목 분류", ItemCategoryVo.class, response);
     }
 
     /**
@@ -80,7 +80,7 @@ public class ItemCategoryController extends BaseController {
      */
     @GetMapping("/{itemTypeId}")
     @SaCheckPermission("wms:item:list")
-    public R<ItemCategoryVo> getInfo(@NotNull(message = "主键不能为空")
+    public R<ItemCategoryVo> getInfo(@NotNull(message = "항목 ID가 필요합니다.")
                                      @PathVariable Long itemTypeId) {
         return R.ok(itemCategoryService.queryById(itemTypeId));
     }
@@ -88,7 +88,7 @@ public class ItemCategoryController extends BaseController {
     /**
      * 新增物料类型
      */
-    @Log(title = "物料类型", businessType = BusinessType.INSERT)
+    @Log(title = "품목 분류", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
     @SaCheckPermission("wms:item:edit")
@@ -100,7 +100,7 @@ public class ItemCategoryController extends BaseController {
     /**
      * 修改物料类型
      */
-    @Log(title = "物料类型", businessType = BusinessType.UPDATE)
+    @Log(title = "품목 분류", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
     @SaCheckPermission("wms:item:edit")
@@ -114,10 +114,10 @@ public class ItemCategoryController extends BaseController {
      *
      * @param itemTypeIds 主键串
      */
-    @Log(title = "物料类型", businessType = BusinessType.DELETE)
+    @Log(title = "품목 분류", businessType = BusinessType.DELETE)
     @DeleteMapping("/{itemTypeIds}")
     @SaCheckPermission("wms:item:edit")
-    public R<Void> remove(@NotEmpty(message = "主键不能为空")
+    public R<Void> remove(@NotEmpty(message = "항목 ID가 필요합니다.")
                           @PathVariable Long[] itemTypeIds) {
         List<Long> ids = new ArrayList<>(Arrays.asList(itemTypeIds));
         itemCategoryService.deleteByIds(ids);

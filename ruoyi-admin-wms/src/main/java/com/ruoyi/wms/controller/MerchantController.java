@@ -58,11 +58,11 @@ public class MerchantController extends BaseController {
      * 导出往来单位列表
      */
     @SaCheckPermission("wms:merchant:list")
-    @Log(title = "往来单位", businessType = BusinessType.EXPORT)
+    @Log(title = "거래처", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(MerchantBo bo, HttpServletResponse response) {
         List<MerchantVo> list = merchantService.queryList(bo);
-        ExcelUtil.exportExcel(list, "往来单位", MerchantVo.class, response);
+        ExcelUtil.exportExcel(list, "거래처", MerchantVo.class, response);
     }
 
     /**
@@ -72,7 +72,7 @@ public class MerchantController extends BaseController {
      */
     @SaCheckPermission("wms:merchant:list")
     @GetMapping("/{id}")
-    public R<MerchantVo> getInfo(@NotNull(message = "主键不能为空")
+    public R<MerchantVo> getInfo(@NotNull(message = "항목 ID가 필요합니다.")
                                      @PathVariable Long id) {
         return R.ok(merchantService.queryById(id));
     }
@@ -81,7 +81,7 @@ public class MerchantController extends BaseController {
      * 新增往来单位
      */
     @SaCheckPermission("wms:merchant:edit")
-    @Log(title = "往来单位", businessType = BusinessType.INSERT)
+    @Log(title = "거래처", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
     public R<Void> add(@Validated(AddGroup.class) @RequestBody MerchantBo bo) {
@@ -93,7 +93,7 @@ public class MerchantController extends BaseController {
      * 修改往来单位
      */
     @SaCheckPermission("wms:merchant:edit")
-    @Log(title = "往来单位", businessType = BusinessType.UPDATE)
+    @Log(title = "거래처", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
     public R<Void> edit(@Validated(EditGroup.class) @RequestBody MerchantBo bo) {
@@ -107,9 +107,9 @@ public class MerchantController extends BaseController {
      * @param id 主键
      */
     @SaCheckPermission("wms:merchant:edit")
-    @Log(title = "往来单位", businessType = BusinessType.DELETE)
+    @Log(title = "거래처", businessType = BusinessType.DELETE)
     @DeleteMapping("/{id}")
-    public R<Void> remove(@NotNull(message = "主键不能为空")
+    public R<Void> remove(@NotNull(message = "항목 ID가 필요합니다.")
                           @PathVariable Long id) {
         merchantService.deleteById(id);
         return R.ok();

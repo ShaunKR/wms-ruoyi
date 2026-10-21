@@ -58,11 +58,11 @@ public class ItemBrandController extends BaseController {
      * 导出商品品牌列表
      */
     @SaCheckPermission("wms:itemBrand:list")
-    @Log(title = "商品品牌", businessType = BusinessType.EXPORT)
+    @Log(title = "상품 브랜드", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(ItemBrandBo bo, HttpServletResponse response) {
         List<ItemBrandVo> list = itemBrandService.queryList(bo);
-        ExcelUtil.exportExcel(list, "商品品牌", ItemBrandVo.class, response);
+        ExcelUtil.exportExcel(list, "상품 브랜드", ItemBrandVo.class, response);
     }
 
     /**
@@ -72,7 +72,7 @@ public class ItemBrandController extends BaseController {
      */
     @SaCheckPermission("wms:itemBrand:list")
     @GetMapping("/{id}")
-    public R<ItemBrandVo> getInfo(@NotNull(message = "主键不能为空")
+    public R<ItemBrandVo> getInfo(@NotNull(message = "항목 ID가 필요합니다.")
                                      @PathVariable Long id) {
         return R.ok(itemBrandService.queryById(id));
     }
@@ -81,7 +81,7 @@ public class ItemBrandController extends BaseController {
      * 新增商品品牌
      */
     @SaCheckPermission("wms:itemBrand:edit")
-    @Log(title = "商品品牌", businessType = BusinessType.INSERT)
+    @Log(title = "상품 브랜드", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
     public R<Void> add(@Validated(AddGroup.class) @RequestBody ItemBrandBo bo) {
@@ -93,7 +93,7 @@ public class ItemBrandController extends BaseController {
      * 修改商品品牌
      */
     @SaCheckPermission("wms:itemBrand:edit")
-    @Log(title = "商品品牌", businessType = BusinessType.UPDATE)
+    @Log(title = "상품 브랜드", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
     public R<Void> edit(@Validated(EditGroup.class) @RequestBody ItemBrandBo bo) {
@@ -107,9 +107,9 @@ public class ItemBrandController extends BaseController {
      * @param id 主键
      */
     @SaCheckPermission("wms:itemBrand:edit")
-    @Log(title = "商品品牌", businessType = BusinessType.DELETE)
+    @Log(title = "상품 브랜드", businessType = BusinessType.DELETE)
     @DeleteMapping("/{id}")
-    public R<Void> remove(@NotNull(message = "主键不能为空")
+    public R<Void> remove(@NotNull(message = "항목 ID가 필요합니다.")
                           @PathVariable Long id) {
         itemBrandService.deleteById(id);
         return R.ok();

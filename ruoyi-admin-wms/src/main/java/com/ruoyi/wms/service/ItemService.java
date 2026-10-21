@@ -149,13 +149,13 @@ public class ItemService {
         LambdaQueryWrapper<Item> queryWrapper = Wrappers.lambdaQuery();
         queryWrapper.eq(Item::getItemName, item.getItemName());
         queryWrapper.ne(item.getId() != null, Item::getId, item.getId());
-        Assert.isTrue(itemMapper.selectCount(queryWrapper) == 0, "商品名称重复");
+        Assert.isTrue(itemMapper.selectCount(queryWrapper) == 0, "이미 등록된 상품명입니다.");
     }
 
     private void validateItemSkuName(List<ItemSkuBo> skuVoList) {
          Assert.isTrue(
              skuVoList.stream().map(ItemSkuBo::getSkuName).distinct().count() == skuVoList.size(),
-             "商品规格重复"
+             "이미 등록된 상품 규격입니다."
          );
     }
 

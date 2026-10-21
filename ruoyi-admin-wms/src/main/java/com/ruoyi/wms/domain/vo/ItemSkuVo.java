@@ -29,7 +29,7 @@ public class ItemSkuVo implements Serializable {
     /**
      * 规格名称
      */
-    @ExcelProperty(value = "规格名称")
+    @ExcelProperty(value = "규격명")
     private String skuName;
 
     /**
@@ -41,54 +41,54 @@ public class ItemSkuVo implements Serializable {
     /**
      * sku条码
      */
-    @ExcelProperty(value = "sku条码")
+    @ExcelProperty(value = "SKU 바코드")
     private String barcode;
 
     /**
      * sku编码
      */
-    @ExcelProperty(value = "sku编码")
+    @ExcelProperty(value = "SKU 코드")
     private String skuCode;
 
     /**
      * 长(cm)
      */
-    @ExcelProperty(value = "长(cm)")
+    @ExcelProperty(value = "길이(cm)")
     private BigDecimal length;
 
     /**
      * 宽(cm)
      */
-    @ExcelProperty(value = "宽(cm)")
+    @ExcelProperty(value = "너비(cm)")
     private BigDecimal width;
 
     /**
      * 高(cm)
      */
-    @ExcelProperty(value = "=高(cm)")
+    @ExcelProperty(value = "=높이(cm)")
     private BigDecimal height;
 
     /**
      * 毛重(kg)
      */
-    @ExcelProperty(value = "毛重(kg)")
+    @ExcelProperty(value = "총중량(kg)")
     private BigDecimal grossWeight;
 
     /**
      * 净重(kg)
      */
-    @ExcelProperty(value = "净重(kg)")
+    @ExcelProperty(value = "순중량(kg)")
     private BigDecimal netWeight;
 
     /**
      * 成本价(元)
      */
-    @ExcelProperty(value = "成本价(元)")
+    @ExcelProperty(value = "원가(위안)")
     private BigDecimal costPrice;
 
     /**
      * 销售价(元)
      */
-    @ExcelProperty(value = "销售价(元)")
+    @ExcelProperty(value = "판매가(위안)")
     private BigDecimal sellingPrice;
 }

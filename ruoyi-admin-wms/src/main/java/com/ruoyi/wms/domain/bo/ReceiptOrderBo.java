@@ -23,7 +23,7 @@ public class ReceiptOrderBo extends BaseOrderBo<ReceiptOrderDetailBo> {
     /**
      * 入库类型
      */
-    @NotNull(message = "入库类型不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "입고 유형을 선택해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private Long optType;
 
     /**
@@ -37,7 +37,7 @@ public class ReceiptOrderBo extends BaseOrderBo<ReceiptOrderDetailBo> {
     /**
      * 仓库id
      */
-    @NotNull(message = "仓库不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "창고항목은 필수입니다.", groups = { AddGroup.class, EditGroup.class })
     private Long warehouseId;
 
 }

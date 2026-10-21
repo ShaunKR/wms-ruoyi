@@ -50,11 +50,11 @@ public class CheckOrderDetailController extends BaseController {
      * 导出库存盘点单据详情列表
      */
     @SaCheckPermission("wms:check:all")
-    @Log(title = "库存盘点单据详情", businessType = BusinessType.EXPORT)
+    @Log(title = "재고 실사 전표 상세", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(CheckOrderDetailBo bo, HttpServletResponse response) {
         List<CheckOrderDetailVo> list = checkOrderDetailService.queryList(bo);
-        ExcelUtil.exportExcel(list, "库存盘点单据详情", CheckOrderDetailVo.class, response);
+        ExcelUtil.exportExcel(list, "재고 실사 전표 상세", CheckOrderDetailVo.class, response);
     }
 
     /**
@@ -64,7 +64,7 @@ public class CheckOrderDetailController extends BaseController {
      */
     @SaCheckPermission("wms:check:all")
     @GetMapping("/{id}")
-    public R<CheckOrderDetailVo> getInfo(@NotNull(message = "主键不能为空")
+    public R<CheckOrderDetailVo> getInfo(@NotNull(message = "항목 ID가 필요합니다.")
                                      @PathVariable Long id) {
         return R.ok(checkOrderDetailService.queryById(id));
     }
@@ -73,7 +73,7 @@ public class CheckOrderDetailController extends BaseController {
      * 新增库存盘点单据详情
      */
     @SaCheckPermission("wms:check:all")
-    @Log(title = "库存盘点单据详情", businessType = BusinessType.INSERT)
+    @Log(title = "재고 실사 전표 상세", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
     public R<Void> add(@Validated(AddGroup.class) @RequestBody CheckOrderDetailBo bo) {
@@ -85,7 +85,7 @@ public class CheckOrderDetailController extends BaseController {
      * 修改库存盘点单据详情
      */
     @SaCheckPermission("wms:check:all")
-    @Log(title = "库存盘点单据详情", businessType = BusinessType.UPDATE)
+    @Log(title = "재고 실사 전표 상세", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
     public R<Void> edit(@Validated(EditGroup.class) @RequestBody CheckOrderDetailBo bo) {
@@ -99,9 +99,9 @@ public class CheckOrderDetailController extends BaseController {
      * @param ids 主键串
      */
     @SaCheckPermission("wms:check:all")
-    @Log(title = "库存盘点单据详情", businessType = BusinessType.DELETE)
+    @Log(title = "재고 실사 전표 상세", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@NotEmpty(message = "主键不能为空")
+    public R<Void> remove(@NotEmpty(message = "항목 ID가 필요합니다.")
                           @PathVariable Long[] ids) {
         checkOrderDetailService.deleteByIds(List.of(ids));
         return R.ok();

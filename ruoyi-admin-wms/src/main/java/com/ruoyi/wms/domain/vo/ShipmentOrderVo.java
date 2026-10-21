@@ -22,18 +22,18 @@ public class ShipmentOrderVo extends BaseOrderVo<ShipmentOrderDetailVo>{
     /**
      * 入库类型
      */
-    @ExcelProperty(value = "操作类型")
+    @ExcelProperty(value = "처리 유형")
     private Long optType;
 
     /**
      * 供应商
      */
-    @ExcelProperty(value = "对接商家id")
+    @ExcelProperty(value = "거래처 ID")
     private Long merchantId;
 
     /**
      * 订单号
      */
-    @ExcelProperty(value = "业务订单号")
+    @ExcelProperty(value = "업무 주문 번호")
     private String bizOrderNo;
 }

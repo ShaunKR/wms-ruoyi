@@ -52,11 +52,11 @@ public class WarehouseController extends BaseController {
      * 导出仓库列表
      */
     @SaCheckPermission("wms:warehouse:list")
-    @Log(title = "仓库", businessType = BusinessType.EXPORT)
+    @Log(title = "창고", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(WarehouseBo bo, HttpServletResponse response) {
         List<WarehouseVo> list = warehouseService.queryList(bo);
-        ExcelUtil.exportExcel(list, "仓库", WarehouseVo.class, response);
+        ExcelUtil.exportExcel(list, "창고", WarehouseVo.class, response);
     }
 
     /**
@@ -66,7 +66,7 @@ public class WarehouseController extends BaseController {
      */
     @SaCheckPermission("wms:warehouse:list")
     @GetMapping("/{id}")
-    public R<WarehouseVo> getInfo(@NotNull(message = "主键不能为空")
+    public R<WarehouseVo> getInfo(@NotNull(message = "항목 ID가 필요합니다.")
                                   @PathVariable Long id) {
         return R.ok(warehouseService.queryById(id));
     }
@@ -75,7 +75,7 @@ public class WarehouseController extends BaseController {
      * 新增仓库
      */
     @SaCheckPermission("wms:warehouse:edit")
-    @Log(title = "仓库", businessType = BusinessType.INSERT)
+    @Log(title = "창고", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
     public R<Void> add(@Validated(AddGroup.class) @RequestBody WarehouseBo bo) {
@@ -87,7 +87,7 @@ public class WarehouseController extends BaseController {
      * 修改仓库
      */
     @SaCheckPermission("wms:warehouse:edit")
-    @Log(title = "仓库", businessType = BusinessType.UPDATE)
+    @Log(title = "창고", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
     public R<Void> edit(@Validated(EditGroup.class) @RequestBody WarehouseBo bo) {
@@ -101,16 +101,16 @@ public class WarehouseController extends BaseController {
      * @param id 主键
      */
     @SaCheckPermission("wms:warehouse:edit")
-    @Log(title = "仓库", businessType = BusinessType.DELETE)
+    @Log(title = "창고", businessType = BusinessType.DELETE)
     @DeleteMapping("/{id}")
-    public R<Void> remove(@NotNull(message = "主键不能为空")
+    public R<Void> remove(@NotNull(message = "항목 ID가 필요합니다.")
                           @PathVariable Long id) {
         warehouseService.deleteById(id);
         return R.ok();
     }
 
     @SaCheckPermission("wms:warehouse:edit")
-    @Log(title = "仓库", businessType = BusinessType.UPDATE)
+    @Log(title = "창고", businessType = BusinessType.UPDATE)
     @PostMapping("/update/orderNum")
     public R<Void> updateOrderNum(@RequestBody List<WarehouseBo> tree) {
         warehouseService.updateOrderNum(tree);

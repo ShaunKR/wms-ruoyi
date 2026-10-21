@@ -22,37 +22,37 @@ public class BaseOrderDetailVo implements Serializable {
     /**
      * 入库单号
      */
-    @ExcelProperty(value = "订单单号")
+    @ExcelProperty(value = "전표 번호")
     private Long orderId;
 
     /**
      * 规格id
      */
-    @ExcelProperty(value = "规格id")
+    @ExcelProperty(value = "규격 ID")
     private Long skuId;
 
     /**
      * 入库数量
      */
-    @ExcelProperty(value = "数量")
+    @ExcelProperty(value = "수량")
     private BigDecimal quantity;
 
     /**
      * 金额
      */
-    @ExcelProperty(value = "金额")
+    @ExcelProperty(value = "금액")
     private BigDecimal amount;
 
     /**
      * 备注
      */
-    @ExcelProperty(value = "备注")
+    @ExcelProperty(value = "비고")
     private String remark;
 
     /**
      * 所属仓库
      */
-    @ExcelProperty(value = "所属仓库")
+    @ExcelProperty(value = "소속 창고")
     private Long warehouseId;
 
     private ItemSkuVo itemSku;

@@ -108,10 +108,10 @@ public class WarehouseService extends ServiceImpl<WarehouseMapper, Warehouse> {
         List<Warehouse> warehouseList = warehouseMapper.selectList(queryWrapper);
         boolean validateNameResult = warehouseList.stream().anyMatch(
             it -> Objects.equals(it.getWarehouseName(), warehouse.getWarehouseName()) && !Objects.equals(it.getId(), warehouse.getId()));
-        Assert.isFalse(validateNameResult, "仓库名称重复");
+        Assert.isFalse(validateNameResult, "이미 등록된 창고명입니다.");
         boolean validateNoResult = warehouseList.stream().anyMatch(
             it -> Objects.equals(it.getWarehouseCode(), warehouse.getWarehouseCode()) && !Objects.equals(it.getId(), warehouse.getId()));
-        Assert.isFalse(validateNoResult, "仓库编号重复");
+        Assert.isFalse(validateNoResult, "이미 등록된 창고 코드입니다.");
     }
 
     /**
@@ -125,7 +125,7 @@ public class WarehouseService extends ServiceImpl<WarehouseMapper, Warehouse> {
 
     private void validIdBeforeDelete(Long id) {
         if (inventoryService.existsByWarehouseId(id)) {
-            throw new ServiceException("删除失败", HttpStatus.CONFLICT,"该仓库已有业务关联，无法删除！");
+            throw new ServiceException("삭제할 수 없습니다.", HttpStatus.CONFLICT,"업무 내역이 있는 창고는 삭제할 수 없습니다.");
         }
     }
 

@@ -68,11 +68,11 @@ public class InventoryController extends BaseController {
      * 导出库存列表
      */
     @SaCheckPermission("wms:inventory:all")
-    @Log(title = "库存", businessType = BusinessType.EXPORT)
+    @Log(title = "재고", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(InventoryBo bo, HttpServletResponse response) {
         List<InventoryVo> list = inventoryService.queryList(bo);
-        ExcelUtil.exportExcel(list, "库存", InventoryVo.class, response);
+        ExcelUtil.exportExcel(list, "재고", InventoryVo.class, response);
     }
 
     /**
@@ -82,7 +82,7 @@ public class InventoryController extends BaseController {
      */
     @SaCheckPermission("wms:inventory:all")
     @GetMapping("/{id}")
-    public R<InventoryVo> getInfo(@NotNull(message = "主键不能为空")
+    public R<InventoryVo> getInfo(@NotNull(message = "항목 ID가 필요합니다.")
                                      @PathVariable Long id) {
         return R.ok(inventoryService.queryById(id));
     }
@@ -91,7 +91,7 @@ public class InventoryController extends BaseController {
      * 新增库存
      */
     @SaCheckPermission("wms:inventory:all")
-    @Log(title = "库存", businessType = BusinessType.INSERT)
+    @Log(title = "재고", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
     public R<Void> add(@Validated(AddGroup.class) @RequestBody InventoryBo bo) {
@@ -103,7 +103,7 @@ public class InventoryController extends BaseController {
      * 修改库存
      */
     @SaCheckPermission("wms:inventory:all")
-    @Log(title = "库存", businessType = BusinessType.UPDATE)
+    @Log(title = "재고", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
     public R<Void> edit(@Validated(EditGroup.class) @RequestBody InventoryBo bo) {
@@ -117,9 +117,9 @@ public class InventoryController extends BaseController {
      * @param ids 主键串
      */
     @SaCheckPermission("wms:inventory:all")
-    @Log(title = "库存", businessType = BusinessType.DELETE)
+    @Log(title = "재고", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@NotEmpty(message = "主键不能为空")
+    public R<Void> remove(@NotEmpty(message = "항목 ID가 필요합니다.")
                           @PathVariable Long[] ids) {
         inventoryService.deleteByIds(List.of(ids));
         return R.ok();

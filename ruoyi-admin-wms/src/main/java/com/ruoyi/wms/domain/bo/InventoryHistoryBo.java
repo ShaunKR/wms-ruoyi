@@ -27,31 +27,31 @@ public class InventoryHistoryBo extends BaseHistoryEntity {
     /**
      *
      */
-    @NotNull(message = "不能为空", groups = { EditGroup.class })
+    @NotNull(message = "항목은 필수입니다.", groups = { EditGroup.class })
     private Long id;
 
     /**
      * 操作id（出库、入库、库存移动表单id）
      */
-    @NotNull(message = "操作id（出库、入库、库存移动表单id）不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "처리 전표 ID가 필요합니다.", groups = { AddGroup.class, EditGroup.class })
     private Long orderId;
 
     /**
      * 操作单号（入库、出库、移库、盘库单号）
      */
-    @NotNull(message = "操作单号（入库、出库、移库、盘库单号）不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "처리 전표 번호를 입력해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private String orderNo;
 
     /**
      * 订单类型
      */
-    @NotNull(message = "订单类型不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "전표 유형을 선택해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private Integer orderType;
 
     /**
      * 物料ID
      */
-    @NotNull(message = "物料ID不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "품목 ID가 필요합니다.", groups = { AddGroup.class, EditGroup.class })
     private Long skuId;
 
     /**
@@ -62,19 +62,19 @@ public class InventoryHistoryBo extends BaseHistoryEntity {
     /**
      * 库存变化
      */
-    @NotNull(message = "库存变化不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "재고 변경 수량을 입력해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private BigDecimal quantity;
 
     /**
      * 备注
      */
-    @NotBlank(message = "备注不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotBlank(message = "비고를 입력해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private String remark;
 
     /**
      * 所属仓库
      */
-    @NotNull(message = "所属仓库不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "창고를 선택해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private Long warehouseId;
 
     private String itemName;

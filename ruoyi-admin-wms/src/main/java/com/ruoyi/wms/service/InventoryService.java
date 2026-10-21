@@ -127,9 +127,9 @@ public class InventoryService extends ServiceImpl<InventoryMapper, Inventory> {
                 if(inventory.getQuantity().compareTo(detail.getQuantity())!=0){
                     ItemSkuMapVo itemSkuMapVo = itemSkuService.queryItemSkuMapVo(detail.getSkuId());
                     throw new ServiceException(
-                        "账面库存不匹配："+itemSkuMapVo.getItem().getItemName()+"（"+itemSkuMapVo.getItemSku().getSkuName()+"）",
+                        "장부 재고가 일치하지 않습니다: "+itemSkuMapVo.getItem().getItemName()+"（"+itemSkuMapVo.getItemSku().getSkuName()+"）",
                         HttpStatus.CONFLICT,
-                        "填写账面库存："+detail.getQuantity()+" 实际账面库存："+inventory.getQuantity());
+                        "입력한 장부 재고: "+detail.getQuantity()+" 현재 장부 재고: "+inventory.getQuantity());
                 }else {
                     if(!inventory.getQuantity().equals(detail.getCheckQuantity())){
                         inventory.setQuantity(detail.getCheckQuantity());
@@ -143,9 +143,9 @@ public class InventoryService extends ServiceImpl<InventoryMapper, Inventory> {
                 if(inventory != null){
                     ItemSkuMapVo itemSkuMapVo = itemSkuService.queryItemSkuMapVo(detail.getSkuId());
                     throw new ServiceException(
-                        "账面库存不匹配："+itemSkuMapVo.getItem().getItemName()+"（"+itemSkuMapVo.getItemSku().getSkuName()+"）",
+                        "장부 재고가 일치하지 않습니다: "+itemSkuMapVo.getItem().getItemName()+"（"+itemSkuMapVo.getItemSku().getSkuName()+"）",
                         HttpStatus.CONFLICT,
-                        "填写账面库存：0, 实际账面库存："+inventory.getQuantity());
+                        "입력한 장부 재고: 0, 현재 장부 재고: "+inventory.getQuantity());
                 }else {
                     inventory = new Inventory();
                     inventory.setSkuId(detail.getSkuId());
@@ -210,13 +210,13 @@ public class InventoryService extends ServiceImpl<InventoryMapper, Inventory> {
             Inventory result = inventoryMapper.selectOne(wrapper);
             if(result==null){
                 ItemSkuMapVo itemSkuMapVo = itemSkuService.queryItemSkuMapVo(shipmentOrderDetailBo.getSkuId());
-                throw new ServiceException("库存不足", HttpStatus.CONFLICT,itemSkuMapVo.getItem().getItemName()+"（"+itemSkuMapVo.getItemSku().getSkuName()+"）库存不足，当前库存：0");
+                throw new ServiceException("재고가 부족합니다.", HttpStatus.CONFLICT,itemSkuMapVo.getItem().getItemName()+"（"+itemSkuMapVo.getItemSku().getSkuName()+") 재고가 부족합니다. 현재 재고: 0");
             }
             BigDecimal beforeQuantity = result.getQuantity();
             BigDecimal afterQuantity = beforeQuantity.subtract(shipmentOrderDetailBo.getQuantity());
             if(afterQuantity.signum() == -1){
                 ItemSkuMapVo itemSkuMapVo = itemSkuService.queryItemSkuMapVo(shipmentOrderDetailBo.getSkuId());
-                throw new ServiceException("库存不足", HttpStatus.CONFLICT,itemSkuMapVo.getItem().getItemName()+"（"+itemSkuMapVo.getItemSku().getSkuName()+"）库存不足，当前库存："+ beforeQuantity);
+                throw new ServiceException("재고가 부족합니다.", HttpStatus.CONFLICT,itemSkuMapVo.getItem().getItemName()+"（"+itemSkuMapVo.getItemSku().getSkuName()+") 재고가 부족합니다. 현재 재고: "+ beforeQuantity);
             }
             shipmentOrderDetailBo.setBeforeQuantity(beforeQuantity);
             shipmentOrderDetailBo.setAfterQuantity(afterQuantity);
@@ -229,12 +229,12 @@ public class InventoryService extends ServiceImpl<InventoryMapper, Inventory> {
     /** Validate every line before reading or mutating inventory. */
     private void validateMovementQuantities(List<? extends BaseOrderDetailBo> details) {
         if (CollUtil.isEmpty(details)) {
-            throw new ServiceException("商品明细不能为空");
+            throw new ServiceException("상품 상세를 하나 이상 추가해 주세요.");
         }
         for (BaseOrderDetailBo detail : details) {
             if (detail == null || detail.getQuantity() == null
                 || detail.getQuantity().signum() <= 0) {
-                throw new ServiceException("出入库数量必须大于0");
+                throw new ServiceException("입출고 수량은 0보다 커야 합니다.");
             }
         }
     }

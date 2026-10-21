@@ -49,7 +49,7 @@ public class CheckOrderService {
     public CheckOrderVo queryById(Long id){
         CheckOrderVo checkOrderVo = checkOrderMapper.selectVoById(id);
         if (checkOrderVo == null) {
-            throw new BaseException("盘库单不存在");
+            throw new BaseException("실사 전표를 찾을 수 없습니다.");
         }
         checkOrderVo.setDetails(checkOrderDetailService.queryByCheckOrderId(id));
         return checkOrderVo;
@@ -103,7 +103,7 @@ public class CheckOrderService {
         LambdaQueryWrapper<CheckOrder> lambdaQueryWrapper = Wrappers.lambdaQuery();
         lambdaQueryWrapper.eq(CheckOrder::getOrderNo, checkOrderNo);
         if (checkOrderMapper.exists(lambdaQueryWrapper)) {
-            throw new BaseException("盘库单号重复，请手动修改");
+            throw new BaseException("실사 전표 번호가 중복됩니다. 다른 번호를 입력해 주세요.");
         }
     }
 
@@ -129,10 +129,10 @@ public class CheckOrderService {
     private void validateIdBeforeDelete(Long id) {
         CheckOrderVo checkOrderVo = queryById(id);
         if (checkOrderVo == null) {
-            throw new BaseException("盘库单不存在");
+            throw new BaseException("실사 전표를 찾을 수 없습니다.");
         }
         if (ServiceConstants.CheckOrderStatus.FINISH.equals(checkOrderVo.getOrderStatus())) {
-            throw new ServiceException("盘库单【" + checkOrderVo.getOrderNo() + "】已盘库完成，无法删除！");
+            throw new ServiceException("실사 전표 [" + checkOrderVo.getOrderNo() + "]는 실사가 완료되어 삭제할 수 없습니다.");
         }
     }
 

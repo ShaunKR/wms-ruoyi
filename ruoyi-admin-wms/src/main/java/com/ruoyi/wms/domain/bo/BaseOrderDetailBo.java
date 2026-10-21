@@ -15,24 +15,24 @@ public class BaseOrderDetailBo extends BaseEntity {
     /**
      * 入库单号
      */
-    @NotNull(message = "单号不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "전표 번호를 입력해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private Long orderId;
     /**
      *
      */
-    @NotNull(message = "不能为空", groups = { EditGroup.class })
+    @NotNull(message = "항목은 필수입니다.", groups = { EditGroup.class })
     private Long id;
 
     /**
      * 规格id
      */
-    @NotNull(message = "规格id不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "규격 ID가 필요합니다.", groups = { AddGroup.class, EditGroup.class })
     private Long skuId;
 
     /**
      * 入库数量
      */
-    @NotNull(message = "出入库数量不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "입출고 수량을 입력해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private BigDecimal quantity;
 
     /**

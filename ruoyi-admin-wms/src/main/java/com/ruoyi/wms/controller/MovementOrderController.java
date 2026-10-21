@@ -50,11 +50,11 @@ public class MovementOrderController extends BaseController {
      * 导出移库单列表
      */
     @SaCheckPermission("wms:movement:all")
-    @Log(title = "移库单", businessType = BusinessType.EXPORT)
+    @Log(title = "이동 전표", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(MovementOrderBo bo, HttpServletResponse response) {
         List<MovementOrderVo> list = movementOrderService.queryList(bo);
-        ExcelUtil.exportExcel(list, "移库单", MovementOrderVo.class, response);
+        ExcelUtil.exportExcel(list, "이동 전표", MovementOrderVo.class, response);
     }
 
     /**
@@ -64,7 +64,7 @@ public class MovementOrderController extends BaseController {
      */
     @SaCheckPermission("wms:movement:all")
     @GetMapping("/{id}")
-    public R<MovementOrderVo> getInfo(@NotNull(message = "主键不能为空")
+    public R<MovementOrderVo> getInfo(@NotNull(message = "항목 ID가 필요합니다.")
                                      @PathVariable Long id) {
         return R.ok(movementOrderService.queryById(id));
     }
@@ -73,7 +73,7 @@ public class MovementOrderController extends BaseController {
      * 新增移库单
      */
     @SaCheckPermission("wms:movement:all")
-    @Log(title = "移库单", businessType = BusinessType.INSERT)
+    @Log(title = "이동 전표", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
     public R<Void> add(@Validated(AddGroup.class) @RequestBody MovementOrderBo bo) {
@@ -86,7 +86,7 @@ public class MovementOrderController extends BaseController {
      * 修改移库单
      */
     @SaCheckPermission("wms:movement:all")
-    @Log(title = "移库单", businessType = BusinessType.UPDATE)
+    @Log(title = "이동 전표", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
     public R<Void> edit(@Validated(EditGroup.class) @RequestBody MovementOrderBo bo) {
@@ -98,7 +98,7 @@ public class MovementOrderController extends BaseController {
      * 移库
      */
     @SaCheckPermission("wms:movement:all")
-    @Log(title = "移库单", businessType = BusinessType.UPDATE)
+    @Log(title = "이동 전표", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PostMapping("/move")
     public R<Void> move(@Validated(AddGroup.class) @RequestBody MovementOrderBo bo) {
@@ -113,9 +113,9 @@ public class MovementOrderController extends BaseController {
      * @param id 主键
      */
     @SaCheckPermission("wms:movement:all")
-    @Log(title = "移库单", businessType = BusinessType.DELETE)
+    @Log(title = "이동 전표", businessType = BusinessType.DELETE)
     @DeleteMapping("/{id}")
-    public R<Void> remove(@NotNull(message = "主键不能为空")
+    public R<Void> remove(@NotNull(message = "항목 ID가 필요합니다.")
                           @PathVariable Long id) {
         movementOrderService.deleteById(id);
         return R.ok();

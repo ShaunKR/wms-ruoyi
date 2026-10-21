@@ -57,7 +57,7 @@ public class ShipmentOrderService {
     public ShipmentOrderVo queryById(Long id){
         ShipmentOrderVo shipmentOrderVo = shipmentOrderMapper.selectVoById(id);
         if (shipmentOrderVo == null) {
-            throw new BaseException("出库单不存在");
+            throw new BaseException("출고 전표를 찾을 수 없습니다.");
         }
         shipmentOrderVo.setDetails(shipmentOrderDetailService.queryByShipmentOrderId(shipmentOrderVo.getId()));
         return shipmentOrderVo;
@@ -116,7 +116,7 @@ public class ShipmentOrderService {
         LambdaQueryWrapper<ShipmentOrder> receiptOrderLqw = Wrappers.lambdaQuery();
         receiptOrderLqw.eq(ShipmentOrder::getOrderNo, shipmentOrderNo);
         ShipmentOrder shipmentOrder = shipmentOrderMapper.selectOne(receiptOrderLqw);
-        Assert.isNull(shipmentOrder, "出库单号重复，请手动修改");
+        Assert.isNull(shipmentOrder, "출고 전표 번호가 중복됩니다. 다른 번호를 입력해 주세요.");
     }
 
 
@@ -153,10 +153,10 @@ public class ShipmentOrderService {
     public void validateIdBeforeDelete(Long id) {
         ShipmentOrderVo shipmentOrderVo = queryById(id);
         if (shipmentOrderVo == null) {
-            throw new BaseException("出库单不存在");
+            throw new BaseException("출고 전표를 찾을 수 없습니다.");
         }
         if (ServiceConstants.ShipmentOrderStatus.FINISH.equals(shipmentOrderVo.getOrderStatus())) {
-            throw new ServiceException("删除失败", HttpStatus.CONFLICT,"出库单【" + shipmentOrderVo.getOrderNo() + "】已出库，无法删除！");
+            throw new ServiceException("삭제할 수 없습니다.", HttpStatus.CONFLICT,"출고 전표 [" + shipmentOrderVo.getOrderNo() + "]는 출고가 완료되어 삭제할 수 없습니다.");
         }
     }
 
@@ -184,7 +184,7 @@ public class ShipmentOrderService {
 
     private void validateBeforeShipment(ShipmentOrderBo bo) {
         if (CollUtil.isEmpty(bo.getDetails())) {
-            throw new BaseException("商品明细不能为空！");
+            throw new BaseException("상품 상세를 하나 이상 추가해 주세요.");
         }
     }
 

@@ -32,7 +32,7 @@ public class ItemBrandVo extends BaseVo {
     /**
      * 品牌名称
      */
-    @ExcelProperty(value = "品牌名称")
+    @ExcelProperty(value = "브랜드명")
     private String brandName;
 
 

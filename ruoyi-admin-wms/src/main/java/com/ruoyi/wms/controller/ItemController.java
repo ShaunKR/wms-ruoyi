@@ -51,12 +51,12 @@ public class ItemController extends BaseController {
     /**
      * 导出物料列表
      */
-    @Log(title = "物料", businessType = BusinessType.EXPORT)
+    @Log(title = "품목", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @SaCheckPermission("wms:item:list")
     public void export(ItemBo bo, HttpServletResponse response) {
         List<ItemVo> list = itemService.queryList(bo);
-        ExcelUtil.exportExcel(list, "物料", ItemVo.class, response);
+        ExcelUtil.exportExcel(list, "품목", ItemVo.class, response);
     }
 
     /**
@@ -66,7 +66,7 @@ public class ItemController extends BaseController {
      */
     @GetMapping("/{id}")
     @SaCheckPermission("wms:item:list")
-    public R<ItemVo> getInfo(@NotNull(message = "主键不能为空")
+    public R<ItemVo> getInfo(@NotNull(message = "항목 ID가 필요합니다.")
                                      @PathVariable Long id) {
         return R.ok(itemService.queryById(id));
     }
@@ -74,7 +74,7 @@ public class ItemController extends BaseController {
     /**
      * 新增物料
      */
-    @Log(title = "物料", businessType = BusinessType.INSERT)
+    @Log(title = "품목", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
     @SaCheckPermission("wms:item:edit")
@@ -85,7 +85,7 @@ public class ItemController extends BaseController {
     /**
      * 修改物料
      */
-    @Log(title = "物料", businessType = BusinessType.UPDATE)
+    @Log(title = "품목", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
     @SaCheckPermission("wms:item:edit")
@@ -99,10 +99,10 @@ public class ItemController extends BaseController {
      *
      * @param id 主键
      */
-    @Log(title = "物料", businessType = BusinessType.DELETE)
+    @Log(title = "품목", businessType = BusinessType.DELETE)
     @DeleteMapping("/{id}")
     @SaCheckPermission("wms:item:edit")
-    public R<Void> remove(@NotNull(message = "主键不能为空")
+    public R<Void> remove(@NotNull(message = "항목 ID가 필요합니다.")
                           @PathVariable Long id) {
         itemService.deleteById(id);
         return R.ok();

@@ -106,7 +106,7 @@ public class ItemCategoryService extends ServiceImpl<ItemCategoryMapper, ItemCat
         LambdaQueryWrapper<ItemCategory> queryWrapper = Wrappers.lambdaQuery();
         queryWrapper.eq(ItemCategory::getCategoryName, bo.getCategoryName());
         queryWrapper.ne(bo.getId() != null, ItemCategory::getId, bo.getId());
-        Assert.isTrue(itemCategoryMapper.selectCount(queryWrapper) == 0, "分类名重复");
+        Assert.isTrue(itemCategoryMapper.selectCount(queryWrapper) == 0, "이미 등록된 분류명입니다.");
     }
 
     /**
@@ -117,11 +117,11 @@ public class ItemCategoryService extends ServiceImpl<ItemCategoryMapper, ItemCat
         // 有子分类不能删
         LambdaQueryWrapper<ItemCategory> itemCategoryLqw = new LambdaQueryWrapper<>();
         itemCategoryLqw.in(ItemCategory::getParentId, ids);
-        Assert.state(itemCategoryMapper.selectCount(itemCategoryLqw) == 0, "删除失败！请先删除该分类下的子分类！");
+        Assert.state(itemCategoryMapper.selectCount(itemCategoryLqw) == 0, "하위 분류를 먼저 삭제해 주세요.");
         // 被商品应用了不能删
         LambdaQueryWrapper<Item> itemLqw = Wrappers.lambdaQuery();
         itemLqw.in(Item::getItemCategory, ids);
-        Assert.state(itemMapper.selectCount(itemLqw) == 0, "删除失败！分类已被商品使用！");
+        Assert.state(itemMapper.selectCount(itemLqw) == 0, "상품에서 사용 중인 분류는 삭제할 수 없습니다.");
         // 删除
         LambdaQueryWrapper<ItemCategory> deleteWrapper = new LambdaQueryWrapper<>();
         deleteWrapper.in(ItemCategory::getId, ids);

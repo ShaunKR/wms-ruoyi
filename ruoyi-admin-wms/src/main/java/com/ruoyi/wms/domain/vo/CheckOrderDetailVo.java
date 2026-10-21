@@ -24,7 +24,7 @@ public class  CheckOrderDetailVo extends BaseOrderDetailVo {
     /**
      * 盘点数量
      */
-    @ExcelProperty(value = "盘点数量")
+    @ExcelProperty(value = "실사 수량")
     private BigDecimal checkQuantity;
 
     /**

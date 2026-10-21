@@ -25,13 +25,13 @@ public class ItemBrandBo extends BaseEntity {
     /**
      * 
      */
-    @NotNull(message = "不能为空", groups = { EditGroup.class })
+    @NotNull(message = "항목은 필수입니다.", groups = { EditGroup.class })
     private Long id;
 
     /**
      * 品牌名称
      */
-    @NotBlank(message = "品牌名称不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotBlank(message = "브랜드명을 입력해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private String brandName;
 
 

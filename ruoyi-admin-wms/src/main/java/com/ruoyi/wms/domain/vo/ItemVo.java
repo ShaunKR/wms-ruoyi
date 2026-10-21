@@ -27,37 +27,37 @@ public class ItemVo implements Serializable {
     /**
      * 编号
      */
-    @ExcelProperty(value = "编号")
+    @ExcelProperty(value = "코드")
     private String itemCode;
 
     /**
      * 名称
      */
-    @ExcelProperty(value = "名称")
+    @ExcelProperty(value = "이름")
     private String itemName;
 
     /**
      * 分类
      */
-    @ExcelProperty(value = "分类")
+    @ExcelProperty(value = "분류")
     private String itemCategory;
 
     /**
      * 单位类别
      */
-    @ExcelProperty(value = "单位类别")
+    @ExcelProperty(value = "단위")
     private String unit;
 
     /**
      * 品牌
      */
-    @ExcelProperty(value = "品牌")
+    @ExcelProperty(value = "브랜드")
     private Long itemBrand;
 
     /**
      * 备注
      */
-    @ExcelProperty(value = "备注")
+    @ExcelProperty(value = "비고")
     private String remark;
 
     /**

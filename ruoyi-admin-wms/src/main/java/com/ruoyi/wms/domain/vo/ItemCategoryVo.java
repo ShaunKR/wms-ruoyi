@@ -26,38 +26,38 @@ public class ItemCategoryVo implements Serializable {
     /**
      * 物料类型id
      */
-    @ExcelProperty(value = "物料类型id")
+    @ExcelProperty(value = "품목 분류 ID")
     private Long id;
 
     /**
      * 父物料类型id
      */
-    @ExcelProperty(value = "父物料类型id")
+    @ExcelProperty(value = "상위 품목 분류 ID")
     private Long parentId;
 
     /**
      * 祖级列表
      */
-    @ExcelProperty(value = "祖级列表")
+    @ExcelProperty(value = "상위 항목 목록")
     private String ancestors;
 
     /**
      * 物料类型名称
      */
-    @ExcelProperty(value = "物料类型名称")
+    @ExcelProperty(value = "품목 분류명")
     private String categoryName;
 
     /**
      * 显示顺序
      */
-    @ExcelProperty(value = "显示顺序")
+    @ExcelProperty(value = "표시 순서")
     private Long orderNum;
 
     /**
      * 物料类型状态（0正常 1停用）
      */
-    @ExcelProperty(value = "物料类型状态", converter = ExcelDictConvert.class)
-    @ExcelDictFormat(readConverterExp = "0=正常,1=停用")
+    @ExcelProperty(value = "품목 분류 상태", converter = ExcelDictConvert.class)
+    @ExcelDictFormat(readConverterExp = "0=정상,1=사용 중지")
     private String status;
 
     /**

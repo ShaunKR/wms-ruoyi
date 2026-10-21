@@ -50,11 +50,11 @@ public class ShipmentOrderController extends BaseController {
      * 导出出库单列表
      */
     @SaCheckPermission("wms:shipment:all")
-    @Log(title = "出库单", businessType = BusinessType.EXPORT)
+    @Log(title = "출고 전표", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(ShipmentOrderBo bo, HttpServletResponse response) {
         List<ShipmentOrderVo> list = shipmentOrderService.queryList(bo);
-        ExcelUtil.exportExcel(list, "出库单", ShipmentOrderVo.class, response);
+        ExcelUtil.exportExcel(list, "출고 전표", ShipmentOrderVo.class, response);
     }
 
     /**
@@ -64,7 +64,7 @@ public class ShipmentOrderController extends BaseController {
      */
     @SaCheckPermission("wms:shipment:all")
     @GetMapping("/{id}")
-    public R<ShipmentOrderVo> getInfo(@NotNull(message = "主键不能为空")
+    public R<ShipmentOrderVo> getInfo(@NotNull(message = "항목 ID가 필요합니다.")
                                      @PathVariable Long id) {
         return R.ok(shipmentOrderService.queryById(id));
     }
@@ -79,7 +79,7 @@ public class ShipmentOrderController extends BaseController {
      * 新增出库单
      */
     @SaCheckPermission("wms:shipment:all")
-    @Log(title = "出库单", businessType = BusinessType.INSERT)
+    @Log(title = "출고 전표", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
     public R<Long> add(@Validated(AddGroup.class) @RequestBody ShipmentOrderBo bo) {
@@ -91,7 +91,7 @@ public class ShipmentOrderController extends BaseController {
      * 修改出库单
      */
     @SaCheckPermission("wms:shipment:all")
-    @Log(title = "出库单", businessType = BusinessType.UPDATE)
+    @Log(title = "출고 전표", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
     public R<Void> edit(@Validated(EditGroup.class) @RequestBody ShipmentOrderBo bo) {
@@ -103,7 +103,7 @@ public class ShipmentOrderController extends BaseController {
      * 出库
      */
     @SaCheckPermission("wms:shipment:all")
-    @Log(title = "出库单", businessType = BusinessType.UPDATE)
+    @Log(title = "출고 전표", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping("/shipment")
     public R<Void> shipment(@Validated(AddGroup.class) @RequestBody ShipmentOrderBo bo) {
@@ -118,9 +118,9 @@ public class ShipmentOrderController extends BaseController {
      * @param id 主键
      */
     @SaCheckPermission("wms:shipment:all")
-    @Log(title = "出库单", businessType = BusinessType.DELETE)
+    @Log(title = "출고 전표", businessType = BusinessType.DELETE)
     @DeleteMapping("/{id}")
-    public R<Void> remove(@NotNull(message = "主键不能为空")
+    public R<Void> remove(@NotNull(message = "항목 ID가 필요합니다.")
                           @PathVariable Long id) {
         shipmentOrderService.deleteById(id);
         return R.ok();

@@ -26,25 +26,25 @@ public class MerchantBo extends BaseEntity {
     /**
      * id
      */
-    @NotNull(message = "id不能为空", groups = { EditGroup.class })
+    @NotNull(message = "ID가 필요합니다.", groups = { EditGroup.class })
     private Long id;
 
     /**
      * 编号
      */
-    @NotBlank(message = "编号不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotBlank(message = "코드를 입력해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private String merchantCode;
 
     /**
      * 名称
      */
-    @NotBlank(message = "名称不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotBlank(message = "이름을 입력해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private String merchantName;
 
     /**
      * 企业类型
      */
-    @NotNull(message = "企业类型不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "거래처 유형을 선택해 주세요.", groups = { AddGroup.class, EditGroup.class })
     private Integer merchantType;
 
     /**

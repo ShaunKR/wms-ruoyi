@@ -110,17 +110,17 @@ public class ItemSkuService extends ServiceImpl<ItemSkuMapper, ItemSku> {
         ItemSku itemSku = itemSkuMapper.selectById(id);
 
         if(queryByItemId(itemSku.getItemId()).size() <= 1){
-            throw new ServiceException("删除失败", HttpStatus.CONFLICT,"至少包含一个商品规格！");
+            throw new ServiceException("삭제할 수 없습니다.", HttpStatus.CONFLICT,"상품 규격을 하나 이상 등록해 주세요.");
         }
         // 校验库存是否已关联
         if (inventoryService.existsBySkuIds(List.of(id))) {
-            throw new ServiceException("删除失败", HttpStatus.CONFLICT,"该规格已有业务关联，无法删除！");
+            throw new ServiceException("삭제할 수 없습니다.", HttpStatus.CONFLICT,"업무 내역이 있는 규격은 삭제할 수 없습니다.");
         }
     }
 
     private void validateSkuIdsBeforeDelete(Collection<Long> skuIds) {
         if (inventoryService.existsBySkuIds(skuIds)) {
-            throw new ServiceException("删除失败", HttpStatus.CONFLICT,"该商品已有业务关联，无法删除！");
+            throw new ServiceException("삭제할 수 없습니다.", HttpStatus.CONFLICT,"업무 내역이 있는 상품은 삭제할 수 없습니다.");
         }
     }
     /**

@@ -22,6 +22,6 @@ public class CheckOrderBo extends BaseOrderBo<CheckOrderDetailBo> {
     /**
      * 仓库id
      */
-    @NotNull(message = "仓库不能为空", groups = { AddGroup.class, EditGroup.class })
+    @NotNull(message = "창고항목은 필수입니다.", groups = { AddGroup.class, EditGroup.class })
     private Long warehouseId;
 }

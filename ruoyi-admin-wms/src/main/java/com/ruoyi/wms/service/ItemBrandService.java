@@ -95,7 +95,7 @@ public class ItemBrandService {
         LambdaQueryWrapper<Item> itemLambdaQueryWrapper = Wrappers.lambdaQuery();
         itemLambdaQueryWrapper.eq(Item::getItemBrand, id);
         if (itemMapper.exists(itemLambdaQueryWrapper)) {
-            throw new ServiceException("删除失败", HttpStatus.CONFLICT,"该品牌已有业务关联，无法删除！");
+            throw new ServiceException("삭제할 수 없습니다.", HttpStatus.CONFLICT,"사용 중인 브랜드는 삭제할 수 없습니다.");
         }
     }
 }

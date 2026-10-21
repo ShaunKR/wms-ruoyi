@@ -50,11 +50,11 @@ public class ReceiptOrderDetailController extends BaseController {
      * 导出入库单详情列表
      */
     @SaCheckPermission("wms:receipt:all")
-    @Log(title = "入库单详情", businessType = BusinessType.EXPORT)
+    @Log(title = "입고 전표 상세", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(ReceiptOrderDetailBo bo, HttpServletResponse response) {
         List<ReceiptOrderDetailVo> list = receiptOrderDetailService.queryList(bo);
-        ExcelUtil.exportExcel(list, "入库单详情", ReceiptOrderDetailVo.class, response);
+        ExcelUtil.exportExcel(list, "입고 전표 상세", ReceiptOrderDetailVo.class, response);
     }
 
     /**
@@ -64,7 +64,7 @@ public class ReceiptOrderDetailController extends BaseController {
      */
     @SaCheckPermission("wms:receipt:all")
     @GetMapping("/{id}")
-    public R<ReceiptOrderDetailVo> getInfo(@NotNull(message = "主键不能为空")
+    public R<ReceiptOrderDetailVo> getInfo(@NotNull(message = "항목 ID가 필요합니다.")
                                      @PathVariable Long id) {
         return R.ok(receiptOrderDetailService.queryById(id));
     }
@@ -73,7 +73,7 @@ public class ReceiptOrderDetailController extends BaseController {
      * 新增入库单详情
      */
     @SaCheckPermission("wms:receipt:all")
-    @Log(title = "入库单详情", businessType = BusinessType.INSERT)
+    @Log(title = "입고 전표 상세", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
     public R<Void> add(@Validated(AddGroup.class) @RequestBody ReceiptOrderDetailBo bo) {
@@ -85,7 +85,7 @@ public class ReceiptOrderDetailController extends BaseController {
      * 修改入库单详情
      */
     @SaCheckPermission("wms:receipt:all")
-    @Log(title = "入库单详情", businessType = BusinessType.UPDATE)
+    @Log(title = "입고 전표 상세", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
     public R<Void> edit(@Validated(EditGroup.class) @RequestBody ReceiptOrderDetailBo bo) {
@@ -99,9 +99,9 @@ public class ReceiptOrderDetailController extends BaseController {
      * @param ids 主键串
      */
     @SaCheckPermission("wms:receipt:all")
-    @Log(title = "入库单详情", businessType = BusinessType.DELETE)
+    @Log(title = "입고 전표 상세", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@NotEmpty(message = "主键不能为空")
+    public R<Void> remove(@NotEmpty(message = "항목 ID가 필요합니다.")
                           @PathVariable Long[] ids) {
         receiptOrderDetailService.deleteByIds(List.of(ids));
         return R.ok();

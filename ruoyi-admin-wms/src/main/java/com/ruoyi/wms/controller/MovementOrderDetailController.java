@@ -50,11 +50,11 @@ public class MovementOrderDetailController extends BaseController {
      * 导出库存移动详情列表
      */
     @SaCheckPermission("wms:movement:all")
-    @Log(title = "库存移动详情", businessType = BusinessType.EXPORT)
+    @Log(title = "재고 이동 상세", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(MovementOrderDetailBo bo, HttpServletResponse response) {
         List<MovementOrderDetailVo> list = movementOrderDetailService.queryList(bo);
-        ExcelUtil.exportExcel(list, "库存移动详情", MovementOrderDetailVo.class, response);
+        ExcelUtil.exportExcel(list, "재고 이동 상세", MovementOrderDetailVo.class, response);
     }
 
     /**
@@ -64,7 +64,7 @@ public class MovementOrderDetailController extends BaseController {
      */
     @SaCheckPermission("wms:movement:all")
     @GetMapping("/{id}")
-    public R<MovementOrderDetailVo> getInfo(@NotNull(message = "主键不能为空")
+    public R<MovementOrderDetailVo> getInfo(@NotNull(message = "항목 ID가 필요합니다.")
                                      @PathVariable Long id) {
         return R.ok(movementOrderDetailService.queryById(id));
     }
@@ -73,7 +73,7 @@ public class MovementOrderDetailController extends BaseController {
      * 新增库存移动详情
      */
     @SaCheckPermission("wms:movement:all")
-    @Log(title = "库存移动详情", businessType = BusinessType.INSERT)
+    @Log(title = "재고 이동 상세", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
     public R<Void> add(@Validated(AddGroup.class) @RequestBody MovementOrderDetailBo bo) {
@@ -85,7 +85,7 @@ public class MovementOrderDetailController extends BaseController {
      * 修改库存移动详情
      */
     @SaCheckPermission("wms:movement:all")
-    @Log(title = "库存移动详情", businessType = BusinessType.UPDATE)
+    @Log(title = "재고 이동 상세", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
     public R<Void> edit(@Validated(EditGroup.class) @RequestBody MovementOrderDetailBo bo) {
@@ -99,9 +99,9 @@ public class MovementOrderDetailController extends BaseController {
      * @param ids 主键串
      */
     @SaCheckPermission("wms:movement:all")
-    @Log(title = "库存移动详情", businessType = BusinessType.DELETE)
+    @Log(title = "재고 이동 상세", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@NotEmpty(message = "主键不能为空")
+    public R<Void> remove(@NotEmpty(message = "항목 ID가 필요합니다.")
                           @PathVariable Long[] ids) {
         movementOrderDetailService.deleteByIds(List.of(ids));
         return R.ok();

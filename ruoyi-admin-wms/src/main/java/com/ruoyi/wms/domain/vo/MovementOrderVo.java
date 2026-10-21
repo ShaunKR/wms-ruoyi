@@ -22,12 +22,12 @@ public class MovementOrderVo extends BaseOrderVo<MovementOrderDetailVo>{
     /**
      * 源仓库
      */
-    @ExcelProperty(value = "源仓库")
+    @ExcelProperty(value = "출발 창고")
     private Long sourceWarehouseId;
 
     /**
      * 目标仓库
      */
-    @ExcelProperty(value = "目标仓库")
+    @ExcelProperty(value = "도착 창고")
     private Long targetWarehouseId;
 }

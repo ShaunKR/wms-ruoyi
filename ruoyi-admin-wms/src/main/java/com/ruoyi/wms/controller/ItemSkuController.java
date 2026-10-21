@@ -51,12 +51,12 @@ public class ItemSkuController extends BaseController {
     /**
      * 导出sku信息列表
      */
-    @Log(title = "sku信息", businessType = BusinessType.EXPORT)
+    @Log(title = "SKU 정보", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @SaCheckPermission("wms:item:list")
     public void export(ItemSkuBo bo, HttpServletResponse response) {
         List<ItemSkuVo> list = itemSkuService.queryList(bo);
-        ExcelUtil.exportExcel(list, "sku信息", ItemSkuVo.class, response);
+        ExcelUtil.exportExcel(list, "SKU 정보", ItemSkuVo.class, response);
     }
 
     /**
@@ -66,7 +66,7 @@ public class ItemSkuController extends BaseController {
      */
     @GetMapping("/{id}")
     @SaCheckPermission("wms:item:list")
-    public R<ItemSkuVo> getInfo(@NotNull(message = "主键不能为空")
+    public R<ItemSkuVo> getInfo(@NotNull(message = "항목 ID가 필요합니다.")
                                      @PathVariable Long id) {
         return R.ok(itemSkuService.queryById(id));
     }
@@ -74,7 +74,7 @@ public class ItemSkuController extends BaseController {
     /**
      * 新增sku信息
      */
-    @Log(title = "sku信息", businessType = BusinessType.INSERT)
+    @Log(title = "SKU 정보", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
     @SaCheckPermission("wms:item:edit")
@@ -85,7 +85,7 @@ public class ItemSkuController extends BaseController {
     /**
      * 修改sku信息
      */
-    @Log(title = "sku信息", businessType = BusinessType.UPDATE)
+    @Log(title = "SKU 정보", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
     @SaCheckPermission("wms:item:edit")
@@ -98,10 +98,10 @@ public class ItemSkuController extends BaseController {
      *
      * @param id 主键
      */
-    @Log(title = "sku信息", businessType = BusinessType.DELETE)
+    @Log(title = "SKU 정보", businessType = BusinessType.DELETE)
     @DeleteMapping("/{id}")
     @SaCheckPermission("wms:item:edit")
-    public R<Void> remove(@NotNull(message = "主键不能为空")
+    public R<Void> remove(@NotNull(message = "항목 ID가 필요합니다.")
                           @PathVariable Long id) {
         itemSkuService.deleteById(id);
         return R.ok();

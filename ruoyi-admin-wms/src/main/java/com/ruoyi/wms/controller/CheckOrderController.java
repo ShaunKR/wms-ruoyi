@@ -50,11 +50,11 @@ public class CheckOrderController extends BaseController {
      * 导出库存盘点单据列表
      */
     @SaCheckPermission("wms:check:all")
-    @Log(title = "库存盘点单据", businessType = BusinessType.EXPORT)
+    @Log(title = "재고 실사 전표", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(CheckOrderBo bo, HttpServletResponse response) {
         List<CheckOrderVo> list = checkOrderService.queryList(bo);
-        ExcelUtil.exportExcel(list, "库存盘点单据", CheckOrderVo.class, response);
+        ExcelUtil.exportExcel(list, "재고 실사 전표", CheckOrderVo.class, response);
     }
 
     /**
@@ -64,7 +64,7 @@ public class CheckOrderController extends BaseController {
      */
     @SaCheckPermission("wms:check:all")
     @GetMapping("/{id}")
-    public R<CheckOrderVo> getInfo(@NotNull(message = "主键不能为空")
+    public R<CheckOrderVo> getInfo(@NotNull(message = "항목 ID가 필요합니다.")
                                      @PathVariable Long id) {
         return R.ok(checkOrderService.queryById(id));
     }
@@ -73,7 +73,7 @@ public class CheckOrderController extends BaseController {
      * 新增库存盘点单据
      */
     @SaCheckPermission("wms:check:all")
-    @Log(title = "库存盘点单据", businessType = BusinessType.INSERT)
+    @Log(title = "재고 실사 전표", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
     public R<Void> add(@Validated(AddGroup.class) @RequestBody CheckOrderBo bo) {
@@ -86,7 +86,7 @@ public class CheckOrderController extends BaseController {
      * 修改库存盘点单据
      */
     @SaCheckPermission("wms:check:all")
-    @Log(title = "库存盘点单据", businessType = BusinessType.UPDATE)
+    @Log(title = "재고 실사 전표", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
     public R<Void> edit(@Validated(EditGroup.class) @RequestBody CheckOrderBo bo) {
@@ -98,7 +98,7 @@ public class CheckOrderController extends BaseController {
      * 盘库结束
      */
     @SaCheckPermission("wms:check:all")
-    @Log(title = "库存盘点单据", businessType = BusinessType.UPDATE)
+    @Log(title = "재고 실사 전표", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PostMapping("/check")
     public R<Void> check(@Validated(AddGroup.class) @RequestBody CheckOrderBo bo) {
@@ -113,9 +113,9 @@ public class CheckOrderController extends BaseController {
      * @param id 主键
      */
     @SaCheckPermission("wms:check:all")
-    @Log(title = "库存盘点单据", businessType = BusinessType.DELETE)
+    @Log(title = "재고 실사 전표", businessType = BusinessType.DELETE)
     @DeleteMapping("/{id}")
-    public R<Void> remove(@NotNull(message = "主键不能为空")
+    public R<Void> remove(@NotNull(message = "항목 ID가 필요합니다.")
                           @PathVariable Long id) {
         checkOrderService.deleteById(id);
         return R.ok();

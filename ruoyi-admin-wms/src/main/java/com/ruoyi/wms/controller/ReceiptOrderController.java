@@ -50,11 +50,11 @@ public class ReceiptOrderController extends BaseController {
      * 导出入库单列表
      */
     @SaCheckPermission("wms:receipt:all")
-    @Log(title = "入库单", businessType = BusinessType.EXPORT)
+    @Log(title = "입고 전표", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(ReceiptOrderBo bo, HttpServletResponse response) {
         List<ReceiptOrderVo> list = receiptOrderService.queryList(bo);
-        ExcelUtil.exportExcel(list, "入库单", ReceiptOrderVo.class, response);
+        ExcelUtil.exportExcel(list, "입고 전표", ReceiptOrderVo.class, response);
     }
 
     /**
@@ -64,7 +64,7 @@ public class ReceiptOrderController extends BaseController {
      */
     @SaCheckPermission("wms:receipt:all")
     @GetMapping("/{id}")
-    public R<ReceiptOrderVo> getInfo(@NotNull(message = "主键不能为空")
+    public R<ReceiptOrderVo> getInfo(@NotNull(message = "항목 ID가 필요합니다.")
                                      @PathVariable Long id) {
         return R.ok(receiptOrderService.queryById(id));
     }
@@ -79,7 +79,7 @@ public class ReceiptOrderController extends BaseController {
      * 暂存入库单
      */
     @SaCheckPermission("wms:receipt:all")
-    @Log(title = "入库单", businessType = BusinessType.INSERT)
+    @Log(title = "입고 전표", businessType = BusinessType.INSERT)
     @RepeatSubmit()
     @PostMapping()
     public R<Long> add(@Validated(AddGroup.class) @RequestBody ReceiptOrderBo bo) {
@@ -92,7 +92,7 @@ public class ReceiptOrderController extends BaseController {
      * 入库
      */
     @SaCheckPermission("wms:receipt:all")
-    @Log(title = "入库单", businessType = BusinessType.UPDATE)
+    @Log(title = "입고 전표", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PostMapping("/warehousing")
     public R<Void> doWarehousing(@Validated(AddGroup.class) @RequestBody ReceiptOrderBo bo) {
@@ -105,7 +105,7 @@ public class ReceiptOrderController extends BaseController {
      * 修改入库单
      */
     @SaCheckPermission("wms:receipt:all")
-    @Log(title = "入库单", businessType = BusinessType.UPDATE)
+    @Log(title = "입고 전표", businessType = BusinessType.UPDATE)
     @RepeatSubmit()
     @PutMapping()
     public R<Void> edit(@Validated(EditGroup.class) @RequestBody ReceiptOrderBo bo) {
@@ -119,9 +119,9 @@ public class ReceiptOrderController extends BaseController {
      * @param id 主键串
      */
     @SaCheckPermission("wms:receipt:all")
-    @Log(title = "入库单", businessType = BusinessType.DELETE)
+    @Log(title = "입고 전표", businessType = BusinessType.DELETE)
     @DeleteMapping("/{id}")
-    public R<Void> remove(@NotNull(message = "主键不能为空")
+    public R<Void> remove(@NotNull(message = "항목 ID가 필요합니다.")
                           @PathVariable Long id) {
         receiptOrderService.deleteById(id);
         return R.ok();
