@@ -165,6 +165,7 @@ public class InventoryService extends ServiceImpl<InventoryMapper, Inventory> {
 
     @Transactional
     public void add(List<? extends BaseOrderDetailBo> details) {
+        validateMovementQuantities(details);
         List<Inventory> addList = new LinkedList<>();
         List<Inventory> updateList = new LinkedList<>();
         details.forEach(orderDetailsBo -> {
@@ -200,6 +201,7 @@ public class InventoryService extends ServiceImpl<InventoryMapper, Inventory> {
      */
     @Transactional
     public void subtract(List<? extends BaseOrderDetailBo> details) {
+        validateMovementQuantities(details);
         List<Inventory> updateList = new LinkedList<>();
         details.forEach(shipmentOrderDetailBo -> {
             LambdaQueryWrapper<Inventory> wrapper = Wrappers.lambdaQuery();
@@ -222,6 +224,19 @@ public class InventoryService extends ServiceImpl<InventoryMapper, Inventory> {
             updateList.add(result);
         });
         updateBatchById(updateList);
+    }
+
+    /** Validate every line before reading or mutating inventory. */
+    private void validateMovementQuantities(List<? extends BaseOrderDetailBo> details) {
+        if (CollUtil.isEmpty(details)) {
+            throw new ServiceException("商品明细不能为空");
+        }
+        for (BaseOrderDetailBo detail : details) {
+            if (detail == null || detail.getQuantity() == null
+                || detail.getQuantity().signum() <= 0) {
+                throw new ServiceException("出入库数量必须大于0");
+            }
+        }
     }
 
     public boolean existsByWarehouseId(Long warehouseId) {

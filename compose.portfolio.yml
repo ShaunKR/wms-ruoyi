@@ -1,0 +1,21 @@
+name: shaunkr-wms
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: shaunkr-wms-mysql
+    ports:
+      - '127.0.0.1:13316:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: wms-local-only
+      MYSQL_DATABASE: wms_portfolio
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./script/sql/wms.sql:/docker-entrypoint-initdb.d/01-wms.sql:ro
+  redis:
+    image: redis:7-alpine
+    container_name: shaunkr-wms-redis
+    ports:
+      - '127.0.0.1:16379:6379'
+volumes:
+  mysql-data:
+    name: shaunkr-wms-mysql

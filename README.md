@@ -1,3 +1,7 @@
+## 한국어 분석·개선 기록
+
+이 Fork의 실행 구성, 업무 분석 및 검증 결과는 [포트폴리오 문서](docs/portfolio/README.ko.md)에 정리했습니다. 원본 프로젝트 소개와 라이선스는 아래에 유지합니다.
+
 ## 平台简介
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://gitee.com/zccbbg/ruoyi-fast-service/blob/master/LICENSE)
